@@ -7,7 +7,7 @@ export function SignUp () {
  const [email, setEmail] = useState('')
  const [password, setPassword] = useState('')
  const [passwordConfirm, setPasswordConfirm] = useState('')
- const { user, Register } = useAuth()
+ const { users, Register } = useAuth()
      
  function handleSubmit (e) {
   e.preventDefault()
@@ -23,7 +23,7 @@ export function SignUp () {
   }
 
   Register(addNewUser)
-  console.log(user)
+  console.log(users)
  }
   return (
    <>

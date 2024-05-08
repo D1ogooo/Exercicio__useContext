@@ -3,50 +3,62 @@ import { useState, useEffect, createContext, useContext } from "react";
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-  let [user, setUser] = useState([]);
+  let [users, setUsers] = useState([{
+   email: 'diiogomarsalcosta@gmail.com',
+   password: 88490495,
+  }]);
   let [token, setToken] = useState(null);
 
   useEffect(() => {
-    let storageToken = localStorage.getItem('@token');
+    const storageToken = localStorage.getItem('@token');
+    const storageUsers = localStorage.getItem('@users');
+    
     if (storageToken) {
-     setToken(storageToken);
+      setToken(storageToken);
     }
-
-    let storageUsers = localStorage.getItem('@users');
-
-    try {
-     if (storageUsers) {
-      setUser([...user, JSON.parse(storageUsers)]);
-     }
-    } catch (error) { 
-     console.error("Error parsing JSON from localStorage:", error);
+  
+    if (storageUsers) {
+      setUser(prevUsers => [...prevUsers, JSON.parse(storageUsers)]);
     }
   }, []);
 
   function Register(newUser) {
-   setUser([...user, newUser]);
+   setUsers(prevUsers => [...prevUsers, newUser]);
+   localStorage.setItem('@users', JSON.stringify([...users, newUser]));
   }
 
-  function Login() {
-    let generateToken = {
-      code: '1234j01234h1fh1fh13bo'
-    };
-    setToken(generateToken.code);
-    localStorage.setItem('@token', generateToken.code);
+  function Login(loginSession) {
+    // Verifica se há usuários no estado 'users'
+    if (users.length > 0) {
+      // Encontra o usuário com o email e senha correspondentes
+      const verifyUser = users.find(user => user.email === loginSession.email && user.password === loginSession.password);
+
+      if (verifyUser) {
+        // Se o usuário for encontrado, armazene o email no localStorage
+        localStorage.setItem('@users', loginSession.email);
+        console.log('Usuário encontrado com sucesso.');
+        // Redireciona para a próxima página
+      } else {
+        console.log('Usuário não encontrado');
+      }
+    } else {
+      console.log('Nenhum usuário registrado');
+    }
   }
 
   function isLogged() {
-    let storageToken = localStorage.getItem('@token');
-    return storageToken;
+   let storageToken = localStorage.getItem('@token');
+   return storageToken;
   }
 
   function Loggout() {
-    setToken(null);
-    localStorage.removeItem('@token');
+   setToken(null);
+   localStorage.removeItem('@users');
+   localStorage.removeItem('@token');
   }
 
   return (
-   <AuthContext.Provider value={{ Register, Login, user, Loggout, isLogged }}>
+   <AuthContext.Provider value={{ Register, Login, users, Loggout, isLogged }}>
     {children}
    </AuthContext.Provider>
   );
