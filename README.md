@@ -1,4 +1,4 @@
-# React + Vite
+👩‍💻 FLuxo de authenticação
 
 📋 Sobre o projeto 
 A ideia era criar um projeto que simulasse a maneira na qual o site lida com o Fluxo de authenticação,
