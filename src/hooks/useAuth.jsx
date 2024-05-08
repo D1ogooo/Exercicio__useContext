@@ -19,12 +19,12 @@ function AuthProvider({ children }) {
       setUser([...user, JSON.parse(storageUsers)]);
      }
     } catch (error) { 
-      console.error("Error parsing JSON from localStorage:", error);
+     console.error("Error parsing JSON from localStorage:", error);
     }
   }, []);
 
   function Register(newUser) {
-    setUser([...user, newUser]);
+   setUser([...user, newUser]);
   }
 
   function Login() {

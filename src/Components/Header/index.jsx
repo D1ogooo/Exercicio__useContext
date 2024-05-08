@@ -3,11 +3,11 @@ import { HeaderStyle, Container, Button } from "./style"
 import LeftIcon from '../../assets/bxs-arrow-from-left.svg'
 
 export const Header = () => {
-  const { Loggout } = useAuth
+  const { Loggout } = useAuth()
 
-  const handleLoggout = () => {
-   Loggout()
-  }  
+  function HandleLoggout () {
+    Loggout()
+  }
 
   return (
    <>
@@ -18,7 +18,7 @@ export const Header = () => {
         <a href="#">Home</a>
        </li>
        <li>
-        <Button onClick={handleLoggout}>
+        <Button onClick={HandleLoggout}>
          <img src={LeftIcon}/>
         </Button>
        </li>
