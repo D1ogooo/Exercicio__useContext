@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 "# Exercicio__useContext" 
 "# Fluxo_authentica-o" 
 "# Fluxo_authentica-o" 
+"# Fluxo_authentica-o" 
