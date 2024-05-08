@@ -1,4 +1,4 @@
-👩‍💻 FLuxo de authenticação
+👩‍💻 Fluxo de authenticação
 
 📋 Sobre o projeto
 
