@@ -7,4 +7,8 @@ export const GlobalStyle = createGlobalStyle`
   outline: 0;
   box-sizing: border-box;
  }
+
+ body {
+  background-color: #111010;
+ }
 `

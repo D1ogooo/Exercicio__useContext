@@ -1,21 +1,24 @@
 import { useAuth } from "../../hooks/useAuth"
-import { HeaderStyle, Container, Button } from "./style"
+import { HeaderStyle, Container, Button, A } from "./style"
 import LeftIcon from '../../assets/bxs-arrow-from-left.svg'
 
 export const Header = () => {
   const { Loggout } = useAuth()
-
+  
   function HandleLoggout () {
-    Loggout()
+   Loggout()
   }
 
   return (
    <>
+    <HeaderStyle>
     <Container>
-     <HeaderStyle>
       <ul>
        <li>
-        <a href="#">Home</a>
+        <A to='/'>Home</A>
+       </li>
+       <li>
+        <A to='/gerenc'>Gerenciamento</A>
        </li>
        <li>
         <Button onClick={HandleLoggout}>
@@ -23,8 +26,8 @@ export const Header = () => {
         </Button>
        </li>
       </ul>
-     </HeaderStyle>
     </Container>
+    </HeaderStyle>
    </>
   )
 }

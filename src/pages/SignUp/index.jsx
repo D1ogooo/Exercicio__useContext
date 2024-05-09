@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
-import { Container } from './style'
-import { Link } from 'react-router-dom'
+import * as S from "../SignIn/style";
+import LoginIcon from '../../assets/icon_loginpage.svg'
 
 export function SignUp () {
  const [email, setEmail] = useState('')
@@ -24,19 +24,23 @@ export function SignUp () {
   Register(addNewUser)
   console.log(users)
  }
+ 
   return (
    <>
-   <Container>
-    <form>
-     <h1>Registre-se</h1>
-     <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}/>
-     <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
-     <input type="password" name="passwordConfirm" id="passwordConfirm" onChange={(e) => setPasswordConfirm(e.target.value)}/>
-     <input type="Submit" onClick={handleSubmit}/>
-     <Link to='/'>Retornar para página de login</Link>
-    </form>
-  
-   </Container>
+     <S.ContainerPai>
+      <S.Titulo>
+        <img src={LoginIcon}/>
+      </S.Titulo>
+      <S.FormContainer>
+        <S.Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Insira o seu email...' />
+        <S.Input type='password' onChange={(e) => setPassword(e.target.value)} placeholder='Insira a sua senha... ' />
+        <S.Input type='password' onChange={(e) => setPasswordConfirm(e.target.value)} placeholder='Confirme a sua senha... ' />
+        <S.SubmitButton type='submit' onClick={handleSubmit} disabled={password.length > 10 || password.length === 0}>
+          CADASTRAR
+        </S.SubmitButton>
+      </S.FormContainer>
+      <S.LinkTo to="/">Ainda sem conta? Se registre!</S.LinkTo>
+    </S.ContainerPai>
    </>
   )
 }

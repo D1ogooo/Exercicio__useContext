@@ -1,37 +1,38 @@
 import { useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
-import { Container, ButtonSubmit } from './style'
-import { Link, useNavigate } from 'react-router-dom'
+import * as S from "./style";
+import LoginIcon from '../../assets/icon_loginpage.svg'
 
 export function SignIn() {
- const [email, setEmail] = useState('')
- const [password, setPassword] = useState('')
- const { Login } = useAuth()
- const navigate = useNavigate()
-  
- async function handleSubmit (e) {
-  e.preventDefault()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { Login } = useAuth()
 
-  let loginSession = {
-   email: email,
-   password: password,
+  async function HandleSubmit(e) {
+    e.preventDefault()
+
+    let loginSession = {
+      email: email,
+      password: password,
+    }
+
+    await Login(loginSession)
   }
 
-  await Login(loginSession)
-  navigate('/');
-}
 
- return (
-  <>
-   <Container>
-   <form>
-    <h1>Faça login</h1>
-    <input type="email" name="email" id="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-    <input type="password" name="password" id="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-    <ButtonSubmit type="submit" onClick={handleSubmit}>Submit</ButtonSubmit>
-    <p style={{ marginTop: '10px' }}>não possui uma conta?<Link to='/register'>Crie uma agora mesmo</Link></p>
-   </form>
-   </Container>
-  </>
- )
+  return (
+    <S.ContainerPai>
+      <S.Titulo>
+        <img src={LoginIcon}/>
+      </S.Titulo>
+      <S.FormContainer>
+        <S.Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Insira o seu email...' />
+        <S.Input value={password} type='password' onChange={(e) => setPassword(e.target.value)} placeholder='Insira a sua senha... ' />
+        <S.SubmitButton type='submit' onClick={HandleSubmit} disabled={password.length > 10 || password.length === 0}>
+          ENTRAR
+        </S.SubmitButton>
+      </S.FormContainer>
+      <S.LinkTo to="/register">Ainda sem conta? Se registre!</S.LinkTo>
+    </S.ContainerPai>
+  )
 }

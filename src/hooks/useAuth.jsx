@@ -15,7 +15,6 @@ function AuthProvider({ children }) {
     }
   
     if (storageUsers) {
-      // console.log(storageUsers)
       setUsers(JSON.stringify(storageUsers));
     }
   }, []);
@@ -25,12 +24,17 @@ function AuthProvider({ children }) {
   }
 
   function Login(loginSession) {
-    const verifyUser = users.find(user => user.email === loginSession.email && user.password === loginSession.password);
+    if(!Array.isArray(users)) {
+     return console.log('Usuário não encontrado')
+    }
+
+    const verifyUser = users.find((user) => user.email === loginSession.email && user.password === loginSession.password);
     if (verifyUser) {
-      let abc = loginSession.email
-      localStorage.setItem('@users', JSON.stringify(abc));
-      console.log('Usuário encontrado com sucesso.');
-      // localStorage.setItem('@users', JSON.stringify([...users, newUser]));
+      let userEmail = loginSession.email
+      let generateToken = { code: '1234j01234h1fh1fh13bo' };
+      localStorage.setItem('@users', JSON.stringify(userEmail));
+      setToken(generateToken.code);
+      localStorage.setItem('@token', generateToken.code);
     } else {
       console.log('Usuário não encontrado');
     }

@@ -1,12 +1,12 @@
 import { Header } from "../../Components/Header";
 import { Container } from "../SignIn/style";
 
-export function Dashboard() {
+export function HomeDashboard() {
   return (
    <>
     <Header />
     <Container>
-    <h1>Bem vindo ao dashboard</h1>   
+     <h1>Bem vindo ao dashboard</h1>   
     </Container>
    </>
   )
