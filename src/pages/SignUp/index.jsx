@@ -18,8 +18,7 @@ export function SignUp () {
 
   let addNewUser = {
    email: email,
-   passowrd: password,
-   passwordConfirm: passwordConfirm, 
+   password: password,
   }
 
   Register(addNewUser)

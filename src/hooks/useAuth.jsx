@@ -3,10 +3,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-  let [users, setUsers] = useState([{
-   email: 'diiogomarsalcosta@gmail.com',
-   password: 88490495,
-  }]);
+  let [users, setUsers] = useState([]);
   let [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -18,31 +15,24 @@ function AuthProvider({ children }) {
     }
   
     if (storageUsers) {
-      setUser(prevUsers => [...prevUsers, JSON.parse(storageUsers)]);
+      // console.log(storageUsers)
+      setUsers(JSON.stringify(storageUsers));
     }
   }, []);
 
   function Register(newUser) {
-   setUsers(prevUsers => [...prevUsers, newUser]);
-   localStorage.setItem('@users', JSON.stringify([...users, newUser]));
+    setUsers(prevUsers => [...prevUsers, newUser]);
   }
 
   function Login(loginSession) {
-    // Verifica se há usuários no estado 'users'
-    if (users.length > 0) {
-      // Encontra o usuário com o email e senha correspondentes
-      const verifyUser = users.find(user => user.email === loginSession.email && user.password === loginSession.password);
-
-      if (verifyUser) {
-        // Se o usuário for encontrado, armazene o email no localStorage
-        localStorage.setItem('@users', loginSession.email);
-        console.log('Usuário encontrado com sucesso.');
-        // Redireciona para a próxima página
-      } else {
-        console.log('Usuário não encontrado');
-      }
+    const verifyUser = users.find(user => user.email === loginSession.email && user.password === loginSession.password);
+    if (verifyUser) {
+      let abc = loginSession.email
+      localStorage.setItem('@users', JSON.stringify(abc));
+      console.log('Usuário encontrado com sucesso.');
+      // localStorage.setItem('@users', JSON.stringify([...users, newUser]));
     } else {
-      console.log('Nenhum usuário registrado');
+      console.log('Usuário não encontrado');
     }
   }
 
