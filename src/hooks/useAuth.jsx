@@ -3,7 +3,11 @@ import { useState, useEffect, createContext, useContext } from "react";
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-  let [users, setUsers] = useState([]);
+  let [users, setUsers] = useState([{
+   email: 'admin',
+   password: 'conhecimento',
+   hierarquia: 1,
+  }]);
   let [token, setToken] = useState(null);
 
   useEffect(() => {
