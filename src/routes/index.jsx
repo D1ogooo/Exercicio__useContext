@@ -11,6 +11,7 @@ export function Routes(){
    <BrowserRouter>
     {/* { isLogged() ? <AppRoutes/> : <AuthRoutes/> } */}
     <AppRoutes/>
+    {/* <AuthRoutes/> */}
    </BrowserRouter>
   </>
  )
