@@ -15,7 +15,7 @@ export const PrincipalContent = styled.section`
  justify-content: center;
  margin-top: 2.5rem;
  hr {
-    width: 20%;
+  width: 20%;
  }
 `
 
@@ -24,6 +24,6 @@ export const Image = styled.section`
  display: flex;
  justify-content: center;
  img {
-    width: 50%;
+  width: 50%;
  }
 `
