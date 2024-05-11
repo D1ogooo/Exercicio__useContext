@@ -9,9 +9,7 @@ export function Routes(){
  return (
   <>
    <BrowserRouter>
-    {/* { isLogged() ? <AppRoutes/> : <AuthRoutes/> } */}
-    <AppRoutes/>
-    {/* <AuthRoutes/> */}
+    { isLogged() ? <AppRoutes/> : <AuthRoutes/> }
    </BrowserRouter>
   </>
  )

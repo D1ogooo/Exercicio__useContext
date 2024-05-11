@@ -19,10 +19,10 @@ export function SignUp () {
   let addNewUser = {
    email: email,
    password: password,
+   hierarquia: 1,
   }
 
   Register(addNewUser)
-  console.log(users)
  }
  
   return (
@@ -35,7 +35,7 @@ export function SignUp () {
         <S.Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Insira o seu email...' />
         <S.Input type='password' onChange={(e) => setPassword(e.target.value)} placeholder='Insira a sua senha... ' />
         <S.Input type='password' onChange={(e) => setPasswordConfirm(e.target.value)} placeholder='Confirme a sua senha... ' />
-        <S.SubmitButton type='submit' onClick={handleSubmit} disabled={password.length > 10 || password.length === 0}>
+        <S.SubmitButton type='submit' onClick={handleSubmit} disabled={password.length < 3 || password.length === 0}>
           CADASTRAR
         </S.SubmitButton>
       </S.FormContainer>

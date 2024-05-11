@@ -3,23 +3,18 @@ import { useState, useEffect, createContext, useContext } from "react";
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-  let [users, setUsers] = useState([{
-   email: 'admin',
-   password: 'conhecimento',
-   hierarquia: 1,
-  }]);
+  let [users, setUsers] = useState([]);
   let [token, setToken] = useState(null);
-
   useEffect(() => {
     const storageToken = localStorage.getItem('@token');
     const storageUsers = localStorage.getItem('@users');
     
     if (storageToken) {
-      setToken(storageToken);
+     setToken(storageToken);
     }
   
     if (storageUsers) {
-      setUsers(JSON.stringify(storageUsers));
+     setUsers(JSON.stringify(storageUsers));
     }
   }, []);
 
@@ -29,28 +24,30 @@ function AuthProvider({ children }) {
 
   function Login(loginSession) {
     if(!Array.isArray(users)) {
-     return console.log('Usuário não encontrado')
+      return console.log('Usuário não encontrado')
     }
-
+  
     const verifyUser = users.find((user) => user.email === loginSession.email && user.password === loginSession.password);
     if (verifyUser) {
-      let userEmail = loginSession.email
-      let generateToken = { code: '1234j01234h1fh1fh13bo' };
-      localStorage.setItem('@users', JSON.stringify(userEmail));
-      setToken(generateToken.code);
-      localStorage.setItem('@token', generateToken.code);
+     const userEmail = loginSession.email
+     let generateToken = {
+      code: '1234j01234h1fh1fh13bo'
+     };
+     localStorage.setItem('@users', JSON.stringify(userEmail));
+     setToken(generateToken.code);
+     localStorage.setItem('@token', generateToken.code);
     } else {
       console.log('Usuário não encontrado');
-    }
+    } 
   }
 
   function isLogged() {
    let storageToken = localStorage.getItem('@token');
+
    return storageToken;
   }
 
   function Loggout() {
-   setToken(null);
    localStorage.removeItem('@users');
    localStorage.removeItem('@token');
   }
@@ -63,8 +60,8 @@ function AuthProvider({ children }) {
 }
 
 function useAuth() {
- const context = useContext(AuthContext);
- return context;
+  const context = useContext(AuthContext);
+  return context
 }
 
 export { AuthProvider, useAuth }

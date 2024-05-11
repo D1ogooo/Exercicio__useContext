@@ -12,8 +12,9 @@ export function SignIn() {
     e.preventDefault()
 
     let loginSession = {
-      email: email,
-      password: password,
+     email: email,
+     password: password,
+     hierarquia: null,
     }
 
     await Login(loginSession)
@@ -28,7 +29,7 @@ export function SignIn() {
       <S.FormContainer>
         <S.Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Insira o seu email...' />
         <S.Input value={password} type='password' onChange={(e) => setPassword(e.target.value)} placeholder='Insira a sua senha... ' />
-        <S.SubmitButton type='submit' onClick={HandleSubmit} disabled={password.length > 10 || password.length === 0}>
+        <S.SubmitButton type='submit' onClick={HandleSubmit} disabled={password.length < 3 || password.length === 0}>
           ENTRAR
         </S.SubmitButton>
       </S.FormContainer>

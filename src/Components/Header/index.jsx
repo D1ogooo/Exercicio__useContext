@@ -1,33 +1,28 @@
-import { useAuth } from "../../hooks/useAuth"
-import { HeaderStyle, Container, Button, A } from "./style"
-import LeftIcon from '../../assets/bxs-arrow-from-left.svg'
+import { useAuth } from "../../hooks/useAuth";
+import { HeaderStyle, Container, Button, A } from "./style";
+import LeftIcon from '../../assets/bxs-arrow-from-left.svg';
 
 export const Header = () => {
-  const { Loggout } = useAuth()
-  
+  const { Loggout } = useAuth();
+
   function HandleLoggout () {
-   Loggout()
+    Loggout();
   }
 
   return (
-   <>
     <HeaderStyle>
-    <Container>
-      <ul>
-       <li>
-        <A to='/'>Home</A>
-       </li>
-       <li>
-        <A to='/gerenc'>Gerenciamento</A>
-       </li>
-       <li>
-        <Button onClick={HandleLoggout}>
-         <img src={LeftIcon}/>
-        </Button>
-       </li>
-      </ul>
-    </Container>
+      <Container>
+        <ul>
+          <li>
+            <A to='/'>Home</A>
+          </li>
+          <li>
+            <Button onClick={HandleLoggout}>
+              <img src={LeftIcon} alt="Logout"/>
+            </Button>
+          </li>
+        </ul>
+      </Container>
     </HeaderStyle>
-   </>
-  )
-}
+  );
+};
