@@ -4,9 +4,9 @@ import LeftIcon from '../../assets/bxs-arrow-from-left.svg';
 
 export const Header = () => {
   const { Loggout } = useAuth();
-
   function HandleLoggout () {
-    Loggout();
+    window.location.reload()
+    Loggout()
   }
 
   return (

@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import * as S from "../SignIn/style";
 import LoginIcon from '../../assets/icon_loginpage.svg'
+import { useNavigate } from 'react-router-dom';
 
 export function SignUp () {
  const [email, setEmail] = useState('')
+ const navigate = useNavigate()
  const [password, setPassword] = useState('')
  const [passwordConfirm, setPasswordConfirm] = useState('')
  const { users, Register } = useAuth()
@@ -22,6 +24,7 @@ export function SignUp () {
    hierarquia: 1,
   }
 
+  navigate('/')
   Register(addNewUser)
  }
  
